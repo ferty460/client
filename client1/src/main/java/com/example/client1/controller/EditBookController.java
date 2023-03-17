@@ -47,8 +47,8 @@ public class EditBookController {
         this.bookId = book_id;
 
         bookName_field.setText(book.getTitle());
-        bookAuthor_field.setText(book.getAuthor());
-        bookPublisher_field.setText(book.getPublishing());
+        bookAuthor_field.setText(book.getAuthor().getSurname());
+        bookPublisher_field.setText(book.getPublisher().getPublisher());
         bookYear_field.setText(book.getYear() + "");
         bookChapter_field.setText(book.getKind());
     }
@@ -57,9 +57,9 @@ public class EditBookController {
     private void handleOk() throws IOException {
         if (isInputValid()) {
             book.setId((long) bookId);
-            book.setTitle(bookName_field.getText());
+            book.setTitle(bookName_field.getText());/*
             book.setAuthor(bookAuthor_field.getText());
-            book.setPublishing(bookPublisher_field.getText());
+            book.setPublisher(bookPublisher_field.getText());*/
             book.setYear(Integer.parseInt(bookYear_field.getText()));
             book.setKind(bookChapter_field.getText());
 

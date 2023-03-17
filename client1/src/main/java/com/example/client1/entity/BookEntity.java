@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 public class BookEntity {
     public Long id;
     public String title;
-    public String author;
-    public String publishing;
+    public AuthorEntity author;
+    public PublisherEntity publisher;
     public int year;
     public String kind;
 }
