@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client1.controller.ApplicationController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="587.0">
          <children>
@@ -43,13 +43,14 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <TableView prefHeight="513.0" prefWidth="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tableBooks" prefHeight="513.0" prefWidth="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Название" />
-                                        <TableColumn prefWidth="75.0" text="Автор" />
-                                          <TableColumn prefWidth="75.0" text="Издательство" />
-                                          <TableColumn prefWidth="75.0" text="Год издания" />
-                                          <TableColumn prefWidth="108.0" text="Тип книги" />
+                                          <TableColumn fx:id="bookId" prefWidth="75.0" text="id" visible="false" />
+                                        <TableColumn fx:id="bookName" prefWidth="75.0" text="Название" />
+                                        <TableColumn fx:id="bookAuthor" prefWidth="75.0" text="Автор" />
+                                          <TableColumn fx:id="bookPublisher" prefWidth="75.0" text="Издательство" />
+                                          <TableColumn fx:id="bookYear" prefWidth="75.0" text="Год издания" />
+                                          <TableColumn fx:id="bookChapter" prefWidth="108.0" text="Тип книги" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -86,12 +87,12 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <TableView layoutX="-2.0" prefHeight="513.0" prefWidth="558.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tableAuthors" layoutX="-2.0" prefHeight="513.0" prefWidth="558.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                          <TableColumn prefWidth="75.0" text="id" visible="false" />
-                                        <TableColumn prefWidth="75.0" text="Имя" />
-                                        <TableColumn prefWidth="75.0" text="Фамилия" />
-                                          <TableColumn prefWidth="75.0" text="Отчество" />
+                                          <TableColumn fx:id="authorId" prefWidth="75.0" text="id" visible="false" />
+                                        <TableColumn fx:id="authorName" prefWidth="75.0" text="Имя" />
+                                        <TableColumn fx:id="authorSurname" prefWidth="75.0" text="Фамилия" />
+                                          <TableColumn fx:id="authorLastname" prefWidth="75.0" text="Отчество" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -120,19 +121,19 @@
                                       </rowConstraints>
                                        <children>
                                           <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Добавить" />
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Редактирование" GridPane.rowIndex="1" />
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Удаление" GridPane.rowIndex="2" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="131.0" text="Редактировать" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" text="Удалить" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="508.0" prefWidth="268.0">
                                  <children>
-                                    <TableView prefHeight="512.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tablePublishers" prefHeight="512.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                          <TableColumn prefWidth="75.0" text="id" visible="false" />
-                                        <TableColumn prefWidth="75.0" text="Название" />
-                                        <TableColumn prefWidth="75.0" text="Город" />
+                                          <TableColumn fx:id="publisherId" prefWidth="75.0" text="id" visible="false" />
+                                        <TableColumn fx:id="publisherName" prefWidth="75.0" text="Название" />
+                                        <TableColumn fx:id="publisherCity" prefWidth="75.0" text="Город" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -2,7 +2,9 @@ package com.example.client1.controller;
 
 
 import com.example.client1.Application;
+import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.BookEntity;
+import com.example.client1.entity.PublisherEntity;
 import com.example.client1.utils.HTTPUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -45,6 +47,33 @@ public class ApplicationController {
 
     @FXML
     private TableColumn<BookEntity, String> bookYear;
+
+    @FXML
+    private TableView<AuthorEntity> tableAuthors;
+
+    @FXML
+    private TableColumn<AuthorEntity, String> authorId;
+
+    @FXML
+    private TableColumn<AuthorEntity, String> authorName;
+
+    @FXML
+    private TableColumn<AuthorEntity, String> authorSurname;
+
+    @FXML
+    private TableColumn<AuthorEntity, String> authorLastname;
+
+    @FXML
+    private TableView<PublisherEntity> tablePublishers;
+
+    @FXML
+    private TableColumn<AuthorEntity, String> publisherId;
+
+    @FXML
+    private TableColumn<AuthorEntity, String> publisherName;
+
+    @FXML
+    private TableColumn<AuthorEntity, String> publisherCity;
 
     @FXML
     private void initialize() throws Exception {
