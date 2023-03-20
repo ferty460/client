@@ -24,6 +24,8 @@ import java.io.IOException;
 public class ApplicationController {
     public static String api = "http://localhost:2825/api/v1/book/";
     public static ObservableList<BookEntity> booksData = FXCollections.observableArrayList();
+    public static ObservableList<AuthorEntity> authorsData = FXCollections.observableArrayList();
+    public static ObservableList<PublisherEntity> publishersData = FXCollections.observableArrayList();
     static HTTPUtils http = new HTTPUtils();
     static Gson gson = new Gson();
 
@@ -67,13 +69,13 @@ public class ApplicationController {
     private TableView<PublisherEntity> tablePublishers;
 
     @FXML
-    private TableColumn<AuthorEntity, String> publisherId;
+    private TableColumn<PublisherEntity, String> publisherId;
 
     @FXML
-    private TableColumn<AuthorEntity, String> publisherName;
+    private TableColumn<PublisherEntity, String> publisherName;
 
     @FXML
-    private TableColumn<AuthorEntity, String> publisherCity;
+    private TableColumn<PublisherEntity, String> publisherCity;
 
     @FXML
     private void initialize() throws Exception {
@@ -84,10 +86,19 @@ public class ApplicationController {
     private void updateTable() throws Exception {
         bookName.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("title"));
         bookAuthor.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("author"));
-        bookPublisher.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("publishing"));
+        bookPublisher.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("publisher"));
         bookYear.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("year"));
         bookChapter.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("kind"));
         tableBooks.setItems(booksData);
+
+        authorName.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("name"));
+        authorSurname.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("surname"));
+        authorLastname.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("lastname"));
+        tableAuthors.setItems(authorsData);
+
+        publisherName.setCellValueFactory(new PropertyValueFactory<PublisherEntity, String>("publisher"));
+        publisherCity.setCellValueFactory(new PropertyValueFactory<PublisherEntity, String>("city"));
+        tablePublishers.setItems(publishersData);
     }
 
     @FXML

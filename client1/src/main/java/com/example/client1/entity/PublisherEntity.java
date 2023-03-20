@@ -10,4 +10,9 @@ public class PublisherEntity {
     private String publisher;
     private String city;
     private List<BookEntity> book;
+
+    @Override
+    public String toString() {
+        return publisher;
+    }
 }

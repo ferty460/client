@@ -6,6 +6,7 @@ import com.example.client1.entity.BookEntity;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -14,8 +15,8 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("sad.fxml"));
-        AnchorPane mainApp = (AnchorPane) fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
+        VBox mainApp = (VBox) fxmlLoader.load();
         Scene scene = new Scene(mainApp, 600, 400);
         stage.setTitle("LibraryApp");
         stage.setScene(scene);

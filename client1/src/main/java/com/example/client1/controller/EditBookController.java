@@ -1,12 +1,13 @@
 package com.example.client1.controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
+import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.BookEntity;
+import com.example.client1.entity.PublisherEntity;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,7 +16,7 @@ import static com.example.client1.controller.ApplicationController.updateBook;
 
 public class EditBookController {
     @FXML
-    private TextField bookAuthor_field;
+    private ComboBox<AuthorEntity> authorList;
 
     @FXML
     private TextField bookChapter_field;
@@ -24,7 +25,7 @@ public class EditBookController {
     private TextField bookName_field;
 
     @FXML
-    private TextField bookPublisher_field;
+    private ComboBox<PublisherEntity> publisherList;
 
     @FXML
     private TextField bookYear_field;
@@ -47,8 +48,8 @@ public class EditBookController {
         this.bookId = book_id;
 
         bookName_field.setText(book.getTitle());
-        bookAuthor_field.setText(book.getAuthor().getSurname());
-        bookPublisher_field.setText(book.getPublisher().getPublisher());
+        /*bookAuthor_field.setText(book.getAuthor().getSurname());
+        bookPublisher_field.setText(book.getPublishing().getPublisher());*/
         bookYear_field.setText(book.getYear() + "");
         bookChapter_field.setText(book.getKind());
     }
@@ -79,8 +80,8 @@ public class EditBookController {
         String errorMessage = "";
 
         if (bookName_field.getText() == null || bookName_field.getText().length() == 0) errorMessage = "Не обнаружено название книги!\n";
-        if (bookAuthor_field.getText() == null || bookAuthor_field.getText().length() == 0) errorMessage = "Не обнаружен автор книги!\n";
-        if (bookPublisher_field.getText() == null || bookPublisher_field.getText().length() == 0) errorMessage = "Не обнаружено издание книги!\n";
+        /*if (bookAuthor_field.getText() == null || bookAuthor_field.getText().length() == 0) errorMessage = "Не обнаружен автор книги!\n";
+        if (bookPublisher_field.getText() == null || bookPublisher_field.getText().length() == 0) errorMessage = "Не обнаружено издание книги!\n";*/
         if (bookYear_field == null || bookYear_field.getText().length() == 0) errorMessage = "Не обнаружен год выпуска книги!\n";
         else {
             try {

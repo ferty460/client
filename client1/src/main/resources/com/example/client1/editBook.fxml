@@ -53,8 +53,8 @@
             <TextField fx:id="bookName_field" GridPane.columnIndex="1" />
             <TextField fx:id="bookYear_field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="bookChapter_field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox prefHeight="25.0" prefWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox onAction="#authorList" prefHeight="25.0" prefWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox onAction="#publisherList" prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button layoutX="163.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleOk" text="Сохранить">
