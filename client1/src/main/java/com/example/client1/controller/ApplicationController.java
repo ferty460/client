@@ -79,34 +79,106 @@ public class ApplicationController {
 
     @FXML
     private void initialize() throws Exception {
-        getData();
-        updateTable();
+        getDataBooks();
+        getDataAuthors();
+        getDataPublishers();
+        updateBookTable();
+        updateAuthorTable();
+        updatePublisherTable();
     }
 
-    private void updateTable() throws Exception {
+    private void updateBookTable() throws Exception {
         bookName.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("title"));
         bookAuthor.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("author"));
         bookPublisher.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("publisher"));
         bookYear.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("year"));
         bookChapter.setCellValueFactory(new PropertyValueFactory<BookEntity, String>("kind"));
         tableBooks.setItems(booksData);
+    }
 
-        authorName.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("name"));
-        authorSurname.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("surname"));
-        authorLastname.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("lastname"));
-        tableAuthors.setItems(authorsData);
-
+    private void updatePublisherTable() throws Exception {
         publisherName.setCellValueFactory(new PropertyValueFactory<PublisherEntity, String>("publisher"));
         publisherCity.setCellValueFactory(new PropertyValueFactory<PublisherEntity, String>("city"));
         tablePublishers.setItems(publishersData);
     }
 
+    private void updateAuthorTable() throws Exception {
+        authorName.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("name"));
+        authorSurname.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("surname"));
+        authorLastname.setCellValueFactory(new PropertyValueFactory<AuthorEntity, String>("lastname"));
+        tableAuthors.setItems(authorsData);
+    }
+
+    //TODO:доделать
     @FXML
     private void click_newBook() throws IOException {
         BookEntity tempBook = new BookEntity();
         booksData.add(tempBook);
         Application.showPersonEditDialog(tempBook, booksData.size()-1);
 //        addBook(tempBook);
+    }
+
+    //TODO:доделать
+    @FXML
+    private void click_newAuthor() throws IOException {
+        BookEntity tempBook = new BookEntity();
+        booksData.add(tempBook);
+        Application.showPersonEditDialog(tempBook, booksData.size()-1);
+//        addBook(tempBook);
+    }
+
+    //TODO:доделать
+    @FXML
+    private void click_newPublisher() throws IOException {
+        BookEntity tempBook = new BookEntity();
+        booksData.add(tempBook);
+        Application.showPersonEditDialog(tempBook, booksData.size()-1);
+//        addBook(tempBook);
+    }
+
+    //TODO:доделать
+    @FXML
+    private void click_editBook() {
+        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            Application.showPersonEditDialog(selectedPerson, booksData.indexOf(selectedPerson));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Ничего не выбрано");
+            alert.setHeaderText("Отсутствует выбранный пользователь");
+            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
+            alert.showAndWait();
+        }
+    }
+
+    //TODO:доделать
+    @FXML
+    private void click_editAuthor() {
+        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            Application.showPersonEditDialog(selectedPerson, booksData.indexOf(selectedPerson));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Ничего не выбрано");
+            alert.setHeaderText("Отсутствует выбранный пользователь");
+            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
+            alert.showAndWait();
+        }
+    }
+
+    //TODO:доделать
+    @FXML
+    private void click_editPublisher() {
+        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            Application.showPersonEditDialog(selectedPerson, booksData.indexOf(selectedPerson));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Ничего не выбрано");
+            alert.setHeaderText("Отсутствует выбранный пользователь");
+            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -126,26 +198,12 @@ public class ApplicationController {
     }
 
     @FXML
-    private void click_duplicateBook() throws IOException {
-        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            addBook(selectedPerson);
-            booksData.add(booksData.indexOf(selectedPerson) + 1, selectedPerson);
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Ничего не найдено");
-            alert.setHeaderText("Отсутствует выбранный пользователь");
-            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    private void click_editBook() {
-        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            Application.showPersonEditDialog(selectedPerson, booksData.indexOf(selectedPerson));
+    private void click_removeAuthor() throws IOException {
+        AuthorEntity selectedAuthor = tableAuthors.getSelectionModel().getSelectedItem();
+        if (selectedAuthor != null) {
+            System.out.println(selectedAuthor.getId());
+            System.out.println(http.delete("http://localhost:2825/api/v1/author/", selectedAuthor.getId()));
+            authorsData.remove(selectedAuthor);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Ничего не выбрано");
@@ -155,14 +213,53 @@ public class ApplicationController {
         }
     }
 
-    public static void getData() throws Exception {
+    @FXML
+    private void click_removePublisher() throws IOException {
+        PublisherEntity selectedPublisher = tablePublishers.getSelectionModel().getSelectedItem();
+        if (selectedPublisher != null) {
+            System.out.println(selectedPublisher.getId());
+            System.out.println(http.delete("http://localhost:2825/api/v1/publisher/", selectedPublisher.getId()));
+            publishersData.remove(selectedPublisher);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Ничего не выбрано");
+            alert.setHeaderText("Отсутствует выбранный пользователь");
+            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
+            alert.showAndWait();
+        }
+    }
+
+    public static void getDataBooks() throws Exception {
         String res = http.get(api, "all");
         System.out.println(res);
         JsonObject base = gson.fromJson(res, JsonObject.class);
+
         JsonArray dataArr = base.getAsJsonArray("data");
         for (int i = 0; i < dataArr.size(); i++) {
             BookEntity newBook = gson.fromJson(dataArr.get(i).toString(), BookEntity.class);
             booksData.add(newBook);
+        }
+    }
+
+    public static void getDataAuthors() throws Exception {
+        String res = http.get("http://localhost:2825/api/v1/author/", "all");
+        JsonObject base = gson.fromJson(res, JsonObject.class);
+
+        JsonArray dataArr = base.getAsJsonArray("data");
+        for (int i = 0; i < dataArr.size(); i++) {
+            AuthorEntity newAuthor = gson.fromJson(dataArr.get(i).toString(), AuthorEntity.class);
+            authorsData.add(newAuthor);
+        }
+    }
+
+    public static void getDataPublishers() throws Exception {
+        String res = http.get("http://localhost:2825/api/v1/publisher/", "all");
+        JsonObject base = gson.fromJson(res, JsonObject.class);
+
+        JsonArray dataArr = base.getAsJsonArray("data");
+        for (int i = 0; i < dataArr.size(); i++) {
+            PublisherEntity newPublisher = gson.fromJson(dataArr.get(i).toString(), PublisherEntity.class);
+            publishersData.add(newPublisher);
         }
     }
 
