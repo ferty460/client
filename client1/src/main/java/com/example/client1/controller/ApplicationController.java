@@ -121,9 +121,9 @@ public class ApplicationController {
     //TODO:доделать
     @FXML
     private void click_newAuthor() throws IOException {
-        BookEntity tempBook = new BookEntity();
-        booksData.add(tempBook);
-        Application.showPersonEditDialog(tempBook, booksData.size()-1);
+        AuthorEntity tempAuthor = new AuthorEntity();
+        authorsData.add(tempAuthor);
+        Application.showAuthorEditDialog(tempAuthor, authorsData.size()-1);
 //        addBook(tempBook);
     }
 

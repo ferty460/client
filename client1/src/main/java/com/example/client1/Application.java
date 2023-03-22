@@ -1,7 +1,9 @@
 package com.example.client1;
 
 import com.example.client1.controller.ApplicationController;
+import com.example.client1.controller.EditAuthorController;
 import com.example.client1.controller.EditBookController;
+import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.BookEntity;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -46,7 +48,26 @@ public class Application extends javafx.application.Application {
         }
     }
 
-
+    public static boolean showAuthorEditDialog(AuthorEntity authorObj, int id) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("editAuthor.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Редактирование автора");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            EditAuthorController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setLabels(authorObj, id);
+            dialogStage.showAndWait();
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public static void main(String[] args) {
         launch();
