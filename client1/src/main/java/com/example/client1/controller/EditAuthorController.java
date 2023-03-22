@@ -59,10 +59,6 @@ public class EditAuthorController {
         }
     }
 
-    public static void updateAuthor(AuthorEntity author) throws IOException {
-        http.put(api + "update", gson.toJson(author).toString());
-    }
-
     @FXML
     private void handleCancel() {
         editAuthorStage.close();
@@ -72,8 +68,8 @@ public class EditAuthorController {
         String errorMessage = "";
 
         if (authorName_field.getText() == null || authorName_field.getText().length() == 0) errorMessage = "Не обнаружено имя автора!\n";
-        if (authorLastname_field == null || authorLastname_field.getText().length() == 0) errorMessage = "Не обнаружено отчество автора!\n";
-        if (authorSurname_field == null || authorSurname_field.getText().length() == 0) errorMessage = "Не обнаружена фамилия автора!\n";
+        if (authorLastname_field.getText() == null || authorLastname_field.getText().length() == 0) errorMessage = "Не обнаружено отчество автора!\n";
+        if (authorSurname_field.getText() == null || authorSurname_field.getText().length() == 0) errorMessage = "Не обнаружена фамилия автора!\n";
 
         if (errorMessage.length() == 0) return true;
         else {
@@ -82,10 +78,12 @@ public class EditAuthorController {
             alert.setTitle("Ошибка заполнения");
             alert.setHeaderText("Пожалуйста, укажите корректные значения текстовых полей");
             alert.setContentText(errorMessage);
-
             alert.showAndWait();
-
             return false;
         }
+    }
+
+    public static void updateAuthor(AuthorEntity author) throws IOException {
+        http.post("http://localhost:2825/api/v1/author/update", gson.toJson(author).toString());
     }
 }

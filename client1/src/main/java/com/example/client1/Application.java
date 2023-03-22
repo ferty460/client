@@ -3,8 +3,10 @@ package com.example.client1;
 import com.example.client1.controller.ApplicationController;
 import com.example.client1.controller.EditAuthorController;
 import com.example.client1.controller.EditBookController;
+import com.example.client1.controller.EditPublisherController;
 import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.BookEntity;
+import com.example.client1.entity.PublisherEntity;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -61,6 +63,27 @@ public class Application extends javafx.application.Application {
             EditAuthorController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setLabels(authorObj, id);
+            dialogStage.showAndWait();
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean showPublisherEditDialog(PublisherEntity publisherObj, int id) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("editPublisher.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Редактирование издательства");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            EditPublisherController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setLabels(publisherObj, id);
             dialogStage.showAndWait();
             return controller.isOkClicked();
         } catch (IOException e) {

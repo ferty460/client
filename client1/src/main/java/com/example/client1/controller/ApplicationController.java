@@ -109,69 +109,34 @@ public class ApplicationController {
         tableAuthors.setItems(authorsData);
     }
 
-    //TODO:доделать
-    @FXML
-    private void click_newBook() throws IOException {
-        BookEntity tempBook = new BookEntity();
-        booksData.add(tempBook);
-        Application.showPersonEditDialog(tempBook, booksData.size()-1);
-//        addBook(tempBook);
-    }
-
-    //TODO:доделать
     @FXML
     private void click_newAuthor() throws IOException {
         AuthorEntity tempAuthor = new AuthorEntity();
         authorsData.add(tempAuthor);
-        Application.showAuthorEditDialog(tempAuthor, authorsData.size()-1);
-//        addBook(tempBook);
+        Application.showAuthorEditDialog(tempAuthor, authorsData.size() - 1);
     }
 
-    //TODO:доделать
-    @FXML
-    private void click_newPublisher() throws IOException {
-        BookEntity tempBook = new BookEntity();
-        booksData.add(tempBook);
-        Application.showPersonEditDialog(tempBook, booksData.size()-1);
-//        addBook(tempBook);
-    }
-
-    //TODO:доделать
-    @FXML
-    private void click_editBook() {
-        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            Application.showPersonEditDialog(selectedPerson, booksData.indexOf(selectedPerson));
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Ничего не выбрано");
-            alert.setHeaderText("Отсутствует выбранный пользователь");
-            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
-            alert.showAndWait();
-        }
-    }
-
-    //TODO:доделать
     @FXML
     private void click_editAuthor() {
-        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
+        AuthorEntity selectedPerson = tableAuthors.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            Application.showPersonEditDialog(selectedPerson, booksData.indexOf(selectedPerson));
+            Application.showAuthorEditDialog(selectedPerson, authorsData.indexOf(selectedPerson));
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Ничего не выбрано");
-            alert.setHeaderText("Отсутствует выбранный пользователь");
-            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
+            alert.setHeaderText("Отсутствует выбранный автор");
+            alert.setContentText("Пожалуйста, выберите автора в таблице");
             alert.showAndWait();
         }
     }
 
-    //TODO:доделать
     @FXML
-    private void click_editPublisher() {
-        BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            Application.showPersonEditDialog(selectedPerson, booksData.indexOf(selectedPerson));
+    private void click_removeAuthor() throws IOException {
+        AuthorEntity selectedAuthor = tableAuthors.getSelectionModel().getSelectedItem();
+        if (selectedAuthor != null) {
+            System.out.println(selectedAuthor.getId());
+            System.out.println(http.delete("http://localhost:2825/api/v1/author/", selectedAuthor.getId()));
+            authorsData.remove(selectedAuthor);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Ничего не выбрано");
@@ -198,17 +163,22 @@ public class ApplicationController {
     }
 
     @FXML
-    private void click_removeAuthor() throws IOException {
-        AuthorEntity selectedAuthor = tableAuthors.getSelectionModel().getSelectedItem();
-        if (selectedAuthor != null) {
-            System.out.println(selectedAuthor.getId());
-            System.out.println(http.delete("http://localhost:2825/api/v1/author/", selectedAuthor.getId()));
-            authorsData.remove(selectedAuthor);
+    private void click_newPublisher() throws IOException {
+        PublisherEntity tempPublisher = new PublisherEntity();
+        publishersData.add(tempPublisher);
+        Application.showPublisherEditDialog(tempPublisher, publishersData.size() - 1);
+    }
+
+    @FXML
+    private void click_editPublisher() {
+        PublisherEntity selectedPerson = tablePublishers.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            Application.showPublisherEditDialog(selectedPerson, publishersData.indexOf(selectedPerson));
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Ничего не выбрано");
-            alert.setHeaderText("Отсутствует выбранный пользователь");
-            alert.setContentText("Пожалуйста, выберите пользователя в таблице");
+            alert.setHeaderText("Отсутствует выбранное издательство");
+            alert.setContentText("Пожалуйста, выберите издательство в таблице");
             alert.showAndWait();
         }
     }

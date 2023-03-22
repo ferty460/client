@@ -60,9 +60,7 @@ public class EditBookController {
     private void handleOk() throws IOException {
         if (isInputValid()) {
             book.setId((long) bookId);
-            book.setTitle(bookName_field.getText());/*
-            book.setAuthor(bookAuthor_field.getText());
-            book.setPublisher(bookPublisher_field.getText());*/
+            book.setTitle(bookName_field.getText());
             book.setYear(Integer.parseInt(bookYear_field.getText()));
             book.setKind(bookChapter_field.getText());
 
