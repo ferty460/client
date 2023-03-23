@@ -7,8 +7,11 @@ import com.example.client1.controller.EditPublisherController;
 import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.BookEntity;
 import com.example.client1.entity.PublisherEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -29,11 +32,11 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-    public static boolean showPersonEditDialog(BookEntity bookObj, int id) {
+    public static boolean showBookEditDialog(BookEntity bookObj, int id) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Application.class.getResource("editBook.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
+            VBox page = (VBox) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Редактирование книги");
             dialogStage.initModality(Modality.WINDOW_MODAL);

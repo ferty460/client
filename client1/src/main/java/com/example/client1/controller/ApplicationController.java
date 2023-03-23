@@ -11,13 +11,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -147,6 +145,27 @@ public class ApplicationController {
     }
 
     @FXML
+    private void click_newBook() throws IOException {
+        BookEntity tempBook = new BookEntity();
+        booksData.add(tempBook);
+        Application.showBookEditDialog(tempBook, booksData.size() - 1);
+    }
+
+    @FXML
+    private void click_editBook() {
+        BookEntity selectedBook = tableBooks.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            Application.showBookEditDialog(selectedBook, booksData.indexOf(selectedBook));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Ничего не выбрано");
+            alert.setHeaderText("Отсутствует выбранное издательство");
+            alert.setContentText("Пожалуйста, выберите издательство в таблице");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
     private void click_removeBook() throws IOException {
         BookEntity selectedPerson = tableBooks.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
@@ -231,15 +250,6 @@ public class ApplicationController {
             PublisherEntity newPublisher = gson.fromJson(dataArr.get(i).toString(), PublisherEntity.class);
             publishersData.add(newPublisher);
         }
-    }
-
-    public static void addBook(BookEntity book) throws IOException {
-        System.out.println(book.toString());
-        http.post(api + "add", gson.toJson(book).toString());
-    }
-
-    public static void updateBook(BookEntity book) throws IOException {
-        http.put(api + "update", gson.toJson(book).toString());
     }
 
 }

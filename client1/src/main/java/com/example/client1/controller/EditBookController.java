@@ -1,20 +1,19 @@
 package com.example.client1.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.BookEntity;
 import com.example.client1.entity.PublisherEntity;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import static com.example.client1.controller.ApplicationController.booksData;
-import static com.example.client1.controller.ApplicationController.updateBook;
+import static com.example.client1.controller.ApplicationController.*;
 
 public class EditBookController {
     @FXML
@@ -45,13 +44,18 @@ public class EditBookController {
         return okClicked;
     }
 
+    public void initialize() {
+        authorList.setItems(FXCollections.observableArrayList(authorsData));
+        authorList.setValue(authorsData.get(0));
+        publisherList.setItems(FXCollections.observableArrayList(publishersData));
+        publisherList.setValue(publishersData.get(0));
+    }
+
     public void setLabels(BookEntity bookIn, int book_id) {
         this.book = bookIn;
         this.bookId = book_id;
 
         bookName_field.setText(book.getTitle());
-        /*bookAuthor_field.setText(book.getAuthor().getSurname());
-        bookPublisher_field.setText(book.getPublishing().getPublisher());*/
         bookYear_field.setText(book.getYear() + "");
         bookChapter_field.setText(book.getKind());
     }
@@ -61,6 +65,8 @@ public class EditBookController {
         if (isInputValid()) {
             book.setId((long) bookId);
             book.setTitle(bookName_field.getText());
+            book.setAuthor(authorList.getValue());
+            book.setPublisher(publisherList.getValue());
             book.setYear(Integer.parseInt(bookYear_field.getText()));
             book.setKind(bookChapter_field.getText());
 
@@ -79,10 +85,9 @@ public class EditBookController {
     private boolean isInputValid() {
         String errorMessage = "";
 
+        if (bookChapter_field.getText() == null || bookChapter_field.getText().length() == 0) errorMessage = "Не обнаружен жанр книги!\n";
         if (bookName_field.getText() == null || bookName_field.getText().length() == 0) errorMessage = "Не обнаружено название книги!\n";
-        /*if (bookAuthor_field.getText() == null || bookAuthor_field.getText().length() == 0) errorMessage = "Не обнаружен автор книги!\n";
-        if (bookPublisher_field.getText() == null || bookPublisher_field.getText().length() == 0) errorMessage = "Не обнаружено издание книги!\n";*/
-        if (bookYear_field == null || bookYear_field.getText().length() == 0) errorMessage = "Не обнаружен год выпуска книги!\n";
+        if (bookYear_field == null || bookYear_field.getText().length() == 0 || Objects.equals(bookYear_field.getText(), "0")) errorMessage = "Не обнаружен год выпуска книги!\n";
         else {
             try {
                 Integer.parseInt(bookYear_field.getText());
@@ -103,5 +108,9 @@ public class EditBookController {
 
             return false;
         }
+    }
+
+    public static void updateBook(BookEntity book) throws IOException {
+        http.put(api + "update", gson.toJson(book).toString());
     }
 }

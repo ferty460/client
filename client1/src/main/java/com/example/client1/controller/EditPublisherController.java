@@ -1,6 +1,5 @@
 package com.example.client1.controller;
 
-import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.PublisherEntity;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

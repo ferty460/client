@@ -34,14 +34,14 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Добавить" />
-                                          <Button mnemonicParsing="false" onAction="#click_removeBook" prefHeight="25.0" prefWidth="169.0" text="Удалить" GridPane.rowIndex="2" />
-                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" text="Редактировать" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#click_newBook" prefHeight="25.0" prefWidth="500.0" text="Добавить" />
+                                          <Button mnemonicParsing="false" onAction="#click_removeBook" prefHeight="25.0" prefWidth="500.0" text="Удалить" GridPane.rowIndex="2" />
+                                          <Button mnemonicParsing="false" onAction="#click_editBook" prefHeight="25.0" prefWidth="500.0" text="Редактировать" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane prefHeight="500.0" prefWidth="200.0">
                                  <children>
                                     <TableView fx:id="tableBooks" prefHeight="513.0" prefWidth="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
@@ -78,9 +78,9 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#click_newAuthor" prefHeight="25.0" prefWidth="157.0" text="Добавить" />
-                                          <Button mnemonicParsing="false" onAction="#click_editAuthor" prefHeight="25.0" prefWidth="166.0" text="Редактировать" GridPane.rowIndex="1" />
-                                          <Button mnemonicParsing="false" onAction="#click_removeAuthor" prefHeight="25.0" prefWidth="172.0" text="Удалить" GridPane.rowIndex="2" />
+                                          <Button mnemonicParsing="false" onAction="#click_newAuthor" prefHeight="25.0" prefWidth="500.0" text="Добавить" />
+                                          <Button mnemonicParsing="false" onAction="#click_editAuthor" prefHeight="25.0" prefWidth="500.0" text="Редактировать" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#click_removeAuthor" prefHeight="25.0" prefWidth="500.0" text="Удалить" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>
@@ -120,9 +120,9 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#click_newPublisher" prefHeight="25.0" prefWidth="137.0" text="Добавить" />
-                                          <Button mnemonicParsing="false" onAction="#click_editPublisher" prefHeight="25.0" prefWidth="131.0" text="Редактировать" GridPane.rowIndex="1" />
-                                          <Button mnemonicParsing="false" onAction="#click_removePublisher" prefHeight="25.0" prefWidth="152.0" text="Удалить" GridPane.rowIndex="2" />
+                                          <Button mnemonicParsing="false" onAction="#click_newPublisher" prefHeight="25.0" prefWidth="500.0" text="Добавить" />
+                                          <Button mnemonicParsing="false" onAction="#click_editPublisher" prefHeight="25.0" prefWidth="500.0" text="Редактировать" GridPane.rowIndex="1" />
+                                          <Button mnemonicParsing="false" onAction="#click_removePublisher" prefHeight="25.0" prefWidth="500.0" text="Удалить" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
                                  </children>
