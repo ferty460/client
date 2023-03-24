@@ -42,7 +42,7 @@ public class EditPublisherController {
     @FXML
     private void handleOk() throws IOException {
         if (isInputValid()) {
-            publisher.setId((long) publisherId);
+            /*publisher.setId((long) publisherId);*/
             publisher.setPublisher(publisherName_field.getText());
             publisher.setCity(publisherCity_field.getText());
 
