@@ -13,6 +13,6 @@ public class PublisherEntity {
 
     @Override
     public String toString() {
-        return publisher;
+        return publisher + ' ' + city;
     }
 }

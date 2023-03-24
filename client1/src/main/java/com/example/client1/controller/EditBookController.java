@@ -7,6 +7,7 @@ import com.example.client1.entity.AuthorEntity;
 import com.example.client1.entity.BookEntity;
 import com.example.client1.entity.PublisherEntity;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -63,7 +64,7 @@ public class EditBookController {
     @FXML
     private void handleOk() throws IOException {
         if (isInputValid()) {
-            book.setId((long) bookId);
+            /*book.setId((long) bookId);*/
             book.setTitle(bookName_field.getText());
             book.setAuthor(authorList.getValue());
             book.setPublisher(publisherList.getValue());

@@ -47,7 +47,7 @@ public class EditAuthorController {
     @FXML
     private void handleOk() throws IOException {
         if (isInputValid()) {
-            author.setId((long) authorId);
+            /*author.setId((long) authorId);*/
             author.setName(authorName_field.getText());
             author.setSurname(authorSurname_field.getText());
             author.setLastname(authorLastname_field.getText());
