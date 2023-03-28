@@ -38,7 +38,7 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("editBook.fxml"));
             VBox page = (VBox) loader.load();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Редактирование книги");
+            dialogStage.setTitle("Книга");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -59,7 +59,7 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("editAuthor.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Редактирование автора");
+            dialogStage.setTitle("Автор");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -80,7 +80,7 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("editPublisher.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Редактирование издательства");
+            dialogStage.setTitle("Издательство");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);

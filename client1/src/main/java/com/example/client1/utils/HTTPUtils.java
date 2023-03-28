@@ -1,10 +1,6 @@
 package com.example.client1.utils;
 
-import com.example.client1.entity.BookEntity;
-import com.example.client1.response.BaseResponse;
-import com.example.client1.response.BookListResponse;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import okhttp3.*;
 
 import java.io.IOException;

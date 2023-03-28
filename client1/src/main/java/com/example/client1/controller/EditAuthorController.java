@@ -55,7 +55,7 @@ public class EditAuthorController {
             okClicked = true;
             editAuthorStage.close();
             authorsData.set(authorId, author);
-            updateAuthor(author);
+            author.setId(Long.valueOf(updateAuthor(author)));
         }
     }
 
@@ -83,7 +83,8 @@ public class EditAuthorController {
         }
     }
 
-    public static void updateAuthor(AuthorEntity author) throws IOException {
-        http.post("http://localhost:2825/api/v1/author/update", gson.toJson(author).toString());
+    public static String updateAuthor(AuthorEntity author) throws IOException {
+        String res = http.post("http://localhost:2825/api/v1/author/update", gson.toJson(author));
+        return res.replaceAll("[^0-9]", "").substring(0,1);
     }
 }

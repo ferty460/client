@@ -74,7 +74,8 @@ public class EditBookController {
             okClicked = true;
             editBookStage.close();
             booksData.set(bookId, book);
-            updateBook(book);
+            System.out.println(bookId);
+            book.setId(Long.valueOf(updateBook(book)));
         }
     }
 
@@ -111,7 +112,8 @@ public class EditBookController {
         }
     }
 
-    public static void updateBook(BookEntity book) throws IOException {
-        http.put(api + "update", gson.toJson(book).toString());
+    public static String updateBook(BookEntity book) throws IOException {
+        String res = http.post("http://localhost:2825/api/v1/book/update", gson.toJson(book));
+        return res.replaceAll("[^0-9]", "").substring(0,1);
     }
 }

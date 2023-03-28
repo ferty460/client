@@ -1,6 +1,7 @@
 package com.example.client1.controller;
 
 import com.example.client1.entity.PublisherEntity;
+import com.example.client1.response.PublisherResponse;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -49,7 +50,7 @@ public class EditPublisherController {
             okClicked = true;
             editPublisherStage.close();
             publishersData.set(publisherId, publisher);
-            updatePublisher(publisher);
+            publisher.setId(Long.valueOf(updatePublisher(publisher)));
         }
     }
 
@@ -76,7 +77,8 @@ public class EditPublisherController {
         }
     }
 
-    public static void updatePublisher(PublisherEntity author) throws IOException {
-        http.post("http://localhost:2825/api/v1/publisher/update", gson.toJson(author).toString());
+    public static String updatePublisher(PublisherEntity author) throws IOException {
+        String res = http.post("http://localhost:2825/api/v1/publisher/update", gson.toJson(author));
+        return res.replaceAll("[^0-9]", "").substring(0,1);
     }
 }
